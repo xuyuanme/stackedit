@@ -89,20 +89,27 @@ define([
                 }, 500);
             }
             function getToken() {
-                $.getJSON(GATEKEEPER_URL + "authenticate/" + code, function(data) {
-                    if(data.token !== undefined) {
-                        token = data.token;
+                        token = "2da3d38c8fdb7a56cd200e14c3c27e309610862b";
                         localStorage["githubToken"] = token;
                         github = new Github({
                             token: token,
                             auth: "oauth"
                         });
                         task.chain();
-                    }
-                    else {
-                        task.error(new Error(errorMsg));
-                    }
-                });
+                // $.getJSON(GATEKEEPER_URL + "authenticate/" + code, function(data) {
+                    // if(data.token !== undefined) {
+                        // token = data.token;
+                        // localStorage["githubToken"] = token;
+                        // github = new Github({
+                            // token: token,
+                            // auth: "oauth"
+                        // });
+                        // task.chain();
+                    // }
+                    // else {
+                        // task.error(new Error(errorMsg));
+                    // }
+                // });
             }
             task.chain(getCode);
         });
